@@ -1,0 +1,10 @@
+server:
+  #  servlet:
+  #    context-path: /notifications
+  port: 8840
+
+management:
+  metrics.web.server.auto-time-requests: false
+
+logging:
+  file: logs/zipkin-server.log

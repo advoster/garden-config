@@ -1,0 +1,102 @@
+logging:
+  level:
+    root: INFO
+    org.springframework.web: WARN
+    org.springframework.security: INFO
+    org.hibernate: ERROR
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${REGISTRY_SERVER_URI:http://localhost:8820/eureka/}
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: ${USER_INFO_URI:http://localhost:8870/user}
+
+spring:
+  zipkin:
+    base-url: ${ZIPKIN_SERVER_URI:http://localhost:8840/}
+  sleuth:
+    sampler:
+      percentage: 1.0
+
+  datasource: # 数据源配置
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: ${DATASOURCE_URL:jdbc:mysql://localhost:3306/garden?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=GMT}
+    username: root
+    password: root168@_*
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # dataSource Pool configuration
+    # 初始化大小，最小，最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    imeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    exceptionSorter: true
+    testOnReturn: false
+    # 打开PSCache，并且指定每个连接上PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,slf4j
+    # spring.datasource.filters=
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+    # 合并多个DruidDataSource的监控数据
+    useGlobalDataSourceStat: true
+    timeBetweenEvictionRunsMillis: 60000
+
+#  rabbitmq:
+#    host: localhost
+#    port: 15672
+#    username: guest
+#    password: guest
+#  cloud:
+#    bus:
+#      enabled: true
+#      trace:
+#        enabled: true
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: bus-refresh
+
+mybatis:
+  config-location: mybatis-config.xml
+  mapper-locations: /mapper/**.xml
+
+## 指明远程仓库的分支
+#spring.cloud.config.label=master
+## dev开发环境；test测试环境；pro正式环境
+#spring.cloud.config.profile=dev
+## 指明配置服务中心地址
+##spring.cloud.config.uri= http://localhost:8820/
+#
+#spring.cloud.config.discovery.enabled=true
+#spring.cloud.config.discovery.serviceId=garden-config-server
+#
+#spring.cloud.bus.enabled=true
+#spring.cloud.bus.trace.enabled=true
+#management.endpoints.web.exposure.include=bus-refresh

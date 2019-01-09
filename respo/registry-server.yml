@@ -1,0 +1,5 @@
+server:
+  port: 8820
+
+logging:
+  file: logs/registry-server.log

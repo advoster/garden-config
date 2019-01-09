@@ -1,0 +1,10 @@
+server:
+  port: 8890
+
+# FTP Server和Client配置(4Build-in)
+ftp:
+  address: 127.0.0.1
+  port: 2121
+  username: admin
+  password: admin
+  basepath: /

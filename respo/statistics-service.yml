@@ -1,0 +1,5 @@
+server:
+  port: 8910
+
+logging:
+  file: logs/statistics-service.log

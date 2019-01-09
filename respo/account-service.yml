@@ -1,0 +1,13 @@
+server:
+  port: 8860
+#  servlet:
+#    context-path: /accounts
+
+feign:
+  hystrix:
+    enabled: true
+
+foo: 123
+
+logging:
+  file: logs/account-service.log

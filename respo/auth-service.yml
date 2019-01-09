@@ -1,0 +1,7 @@
+server:
+  port: 8870
+#  servlet:
+#    context-path: /auth
+
+logging:
+  file: logs/auth-service.log

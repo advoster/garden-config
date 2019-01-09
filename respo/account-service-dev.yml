@@ -1,5 +1,8 @@
-foo = foo version 5
-democonfigclient.message=hello spring io
+
+foo: foo version 5
+
+democonfigclient:
+  message: hello spring io
 
 # routes to serviceId
 # routes to url

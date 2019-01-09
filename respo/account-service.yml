@@ -7,7 +7,7 @@ feign:
   hystrix:
     enabled: true
 
-foo: 7894564
+foo: advoster
 
 logging:
   file: logs/account-service.log
